@@ -16,19 +16,22 @@ $app->get('/hello/{name}',"HelloController:hello_with_name");
 
 $app->get('/json/{name}', "HelloController:json_name");
 
-
-//es da copiare dalla lavagna
-$app->get('/alunni', "AlunniController:index");
+//ricerca
+$app->get('/alunni', "AlunniController:search");
 
 $app->get('/alunni/{id}', "AlunniController:view");
 
-//curl -X POST localhost:8080/alunni --data '{"nome":"aaa","cognome":"bbb"}' -H "Content-Type: application/json"
+//curl -X POST localhost:8080/alunni -d '{"nome":"aaa","cognome":"bbb"}' -H "Content-Type: application/json"
 $app->post('/alunni', "AlunniController:create");
 
-//curl -X PUT localhost:8080/alunni/{id} --data '{"nome":"stefano","cognome":"cherubini"}' -H "Content-Type: application/json"
-//curl -X PUT localhost:8080/alunni/3 --data '{"nome":"Stefano","cognome":"il meglio"}' -H "Content-Type: application/json"
 
+//curl -X PUT localhost:8080/alunni/3 -d '{"nome":"Stefano","cognome":"il meglio"}' -H "Content-Type: application/json"
 $app->put('/alunni/{id}', "AlunniController:update");
+
+
+//curl -X DELETE localhost:8080/alunni/3 
+$app->delete('/alunni/{id}', "AlunniController:delete");
+
 
 $app->run();
 
